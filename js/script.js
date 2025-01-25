@@ -87,8 +87,6 @@ async function displayMovieDetails() {
    displayBagroundImage('movie', movie.backdrop_path)
    const div = document.createElement('div');
 
-   console.log(movie.budget)
-
    div.innerHTML =  `
          <div class="details-top">
           <div>
@@ -220,13 +218,61 @@ function displayBagroundImage(type, backgroundPath) {
    overlayDiv.style.zIndex = '-1';
    overlayDiv.style.opacity = '0.1';
 
-   if(type === 'show') {
-      document.querySelector('#show-details').appendChild(overlayDiv);
+   if(type === 'movie') {
+      document.querySelector('#movie-details').appendChild(overlayDiv);
    } else {
-      document.querySelector('#show-details').appendChild(overlayDiv)
+      document.querySelector('#show-details').appendChild(overlayDiv);
    }
 }
 
+// Display slider movies
+
+async function displaySlider() {
+   const {results} = await fetchAPIData('movie/now_playing');
+
+   results.forEach((movie) => {
+     const div = document.createElement('div');
+     div.classList.add('swiper-slide');
+
+     div.innerHTML = `
+            <a href="movie-details.html?id=${movie.id}">
+              <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+            </a>
+            <h4 class="swiper-rating">
+              <i class="fas fa-star text-secondary"></i> ${movie.vote_average}
+            </h4>
+          
+     `;
+
+     document.querySelector('.swiper-wrapper').appendChild(div);
+
+     initSwiper();
+   })
+}
+
+function initSwiper() {
+   const swiper = new Swiper('.swiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      freeMode: true,
+      loop: true,
+      autoplay: {
+         delay: 4000,
+         disableOnInteraction: false
+      },
+      breakpoints: {
+         500: {
+            slidesPerView: 2
+         },
+         700: {
+            slidesPerView: 3
+         },
+         1200: {
+            slidesPerView: 4
+         }
+      }
+   })
+}
 // Fetch Data from The Movie DB(TMDB)
 async function fetchAPIData(endpoint) {
    const API_KEY = '3067dad5ebf9981bfdfe3f4abd9d7e73';
@@ -269,6 +315,7 @@ function init() {
    switch(global.currentPage) {
       case '/':
       case '/index.html':
+         displaySlider();
          displayPopularMovies();
          break;
       case '/shows.html':
