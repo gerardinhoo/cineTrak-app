@@ -7,5 +7,5 @@
 
 
 
-  <img width="590" alt="Screenshot 2025-01-25 at 2 13 39 PM" src="https://github.com/user-attachments/assets/b40a7489-b278-4b1f-9c3a-7417980fbe5b" />
 
+<img width="588" alt="Screenshot 2025-01-25 at 2 19 54 PM" src="https://github.com/user-attachments/assets/ce95cefb-d77f-4bb5-91f1-464866f18eb9" />
