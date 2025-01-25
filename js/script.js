@@ -81,8 +81,10 @@ async function displayPopularTVShows() {
 // Display movies details
 async function displayMovieDetails() {
    const movieId = window.location.search.split('=')[1];
-
    const movie = await fetchAPIData(`movie/${movieId}`);
+   
+   // Overlay for background Image
+   displayBagroundImage('movie', movie.backdrop_path)
    const div = document.createElement('div');
 
    console.log(movie.budget)
@@ -138,6 +140,30 @@ async function displayMovieDetails() {
         </div>
    `
    document.querySelector('#movie-details').appendChild(div);
+}
+
+// Display Backdrop on details page
+function displayBagroundImage(type, backgroundPath) {
+   const overlayDiv = document.createElement('div');
+   overlayDiv.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${backgroundPath})`;
+   overlayDiv.style.backgroundPosition = 'center';
+   overlayDiv.style.backgroundSize = 'cover';
+   overlayDiv.style.backgroundRepeat = 'no-repeat';
+   overlayDiv.style.height = '100vh';
+   overlayDiv.style.width = '100vh';
+   overlayDiv.style.position = 'absolute';
+   overlayDiv.style.top= '0';
+   overlayDiv.style.left = '0';
+   overlayDiv.style.zIndex = '-1';
+   overlayDiv.style.opacitye = '0.1';
+
+   if(type === 'movie') {
+      document.querySelector('#movie-details').appendChild(overlayDiv);
+   } else {
+      document.querySelector('#show-details').appendChild(overlayDiv)
+   }
+
+
 }
 
 // Fetch Data from The Movie DB(TMDB)
