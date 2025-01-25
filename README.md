@@ -1,1 +1,1 @@
-Movie Appplication
+Movie Appplication with Vanilla JavaScript
