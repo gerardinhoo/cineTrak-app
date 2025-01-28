@@ -1,6 +1,8 @@
 
   Movie Appplication with Vanilla JavaScript.
 
+  Technology: JavaScript - Async Await, Promises, Rest API
+
   Consumming The Movie DB to display movies using Aync Await.
 
   API: https://developer.themoviedb.org/docs/getting-started
