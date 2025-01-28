@@ -5,7 +5,7 @@
 
   Consumming The Movie DB to display movies using Aync Await.
 
-  API: https://developer.themoviedb.org/docs/getting-started
+  API Use for this project: https://developer.themoviedb.org/docs/getting-started
 
 
 
